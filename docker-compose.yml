@@ -4,7 +4,9 @@ services:
 
   service-discovery:
     container_name: service-discovery
-    image: service-discovery
+    image: service-discovery-skma
+    depends_on:
+      - postgres-skma
     ports:
       - "8761:8761"
     networks:
@@ -13,7 +15,34 @@ services:
   configuration-service:
     image: configuration-service
     depends_on:
-      - service-discovery
+      - service-discovery-skma
+    networks:
+      - skma
+
+  postgres:
+    container_name: postgres
+    image: postgres-skma
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: # needed databases will be here!
+      POSTGRES_PASSWORD: 1
+      PGDATA: /data/postgres
+    volumes:
+      - ./postgres-htr:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - skma
+
+  api-gateway:
+    container_name: api-gateway
+    image: api-gateway-skma
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-discovery-skma
+      - configuration-service-skma
+      - postgres-skma
     networks:
       - skma
 
