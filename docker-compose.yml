@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+
+  service-discovery:
+    container_name: service-discovery
+    image: service-discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - skma
+
+  configuration-service:
+    image: configuration-service
+    depends_on:
+      - service-discovery
+    networks:
+      - skma
+
+networks:
+  skma:
+    driver: bridge
