@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    config:
+      enabled: true
+      uri: http://configuration-service:8888
+      fail-fast: true
+      retry:
+        initial-interval: 1500
+        multiplier: 1.5
+        max-attempts: 25
+        max-interval: 1000
+  profiles:
+    active: active
+  application:
+    name: gateway
