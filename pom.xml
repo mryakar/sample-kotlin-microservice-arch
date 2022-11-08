@@ -26,6 +26,7 @@
     <modules>
         <module>service-discovery</module>
         <module>configuration-service</module>
+        <module>api-gateway</module>
     </modules>
 
     <dependencies>
