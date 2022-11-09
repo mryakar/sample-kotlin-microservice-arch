@@ -26,3 +26,5 @@ hs_err_pid*
 /api-gateway/target/
 /service-discovery/target/
 /configuration-service/target/
+/.jpb/
+/note-service/target/
