@@ -22,11 +22,11 @@
         <kotlin.version>1.6.21</kotlin.version>
     </properties>
 
-
     <modules>
         <module>service-discovery</module>
         <module>configuration-service</module>
         <module>api-gateway</module>
+        <module>note-service</module>
     </modules>
 
     <dependencies>
