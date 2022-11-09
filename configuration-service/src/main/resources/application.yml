@@ -6,12 +6,9 @@ spring:
     name: configuration-service
   cloud:
     config:
-#      server:
-      #        git:
-      #          uri: https://github.com/mryakar/configurations.git
-      #          username: mryakar
-      #          password: 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
-      #          clone-on-start: true
+      server:
+        native:
+          search-locations: classpath:/config
       discovery:
         enabled: true
         service-id: configuration-service
