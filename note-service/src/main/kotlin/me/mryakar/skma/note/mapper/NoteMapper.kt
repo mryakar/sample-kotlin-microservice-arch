@@ -2,34 +2,17 @@ package me.mryakar.skma.note.mapper
 
 import me.mryakar.skma.note.dto.NoteDto
 import me.mryakar.skma.note.entity.NoteEntity
-import org.mapstruct.Mapper
-import org.mapstruct.Mapping
-import org.mapstruct.Mappings
+import org.springframework.stereotype.Component
 
-@Mapper(componentModel = "spring")
-interface NoteMapper {
+@Component
+class NoteMapper {
 
-    @Mappings(
-        Mapping(source = "entity.id", target = "id"),
-        Mapping(source = "entity.text", target = "text")
-    )
-    fun toDto(entity: NoteEntity): NoteDto
+    fun toDto(entity: NoteEntity) = NoteDto(entity.id, entity.text)
 
-    @Mappings(
-        Mapping(source = "entity.id", target = "id"),
-        Mapping(source = "entity.text", target = "text")
-    )
-    fun toDto(entityList: List<NoteEntity>): List<NoteDto>
+    fun toDto(entityList: List<NoteEntity>) = entityList.map { toDto(it) }
 
-    @Mappings(
-        Mapping(source = "dto.id", target = "id"),
-        Mapping(source = "dto.text", target = "text")
-    )
-    fun toEntity(dto: NoteDto): NoteEntity
+    fun toEntity(dto: NoteDto) = NoteEntity(dto.id, dto.text)
 
-    @Mappings(
-        Mapping(source = "dto.id", target = "id"),
-        Mapping(source = "dto.text", target = "text")
-    )
-    fun toEntity(dtoList: List<NoteDto>): List<NoteEntity>
+    fun toEntity(dtoList: List<NoteDto>) = dtoList.map { toEntity(it) }
+
 }
