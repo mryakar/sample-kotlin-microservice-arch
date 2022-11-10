@@ -20,10 +20,11 @@ data class NoteEntity(
         return id == other.id
     }
 
-    override fun hashCode(): Int = hashCode()
+    override fun hashCode(): Int = javaClass.hashCode()
 
     @Override
     override fun toString(): String {
         return this::class.simpleName + "(id = $id )"
     }
+
 }
